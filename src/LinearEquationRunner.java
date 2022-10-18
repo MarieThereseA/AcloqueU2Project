@@ -3,7 +3,7 @@ public class LinearEquationRunner {
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Welcome!");
+        /*System.out.println("Welcome!");
         System.out.print("Enter coordinate 1: ");
         String one = scan.nextLine();
 
@@ -30,6 +30,12 @@ public class LinearEquationRunner {
         System.out.println(x1);
         System.out.println(x2);
         System.out.println(y1);
-        System.out.println(y2);
+        System.out.println(y2); */
+
+        double c = 99.96;
+        String y = "" + 74.905;
+        String n = "" + y;
+        int decimal = y.indexOf(".");
+        System.out.println(Math.round(c));
     }
 }
