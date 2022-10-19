@@ -32,10 +32,13 @@ public class LinearEquationRunner {
         System.out.println(y1);
         System.out.println(y2); */
 
-        double c = 99.96;
-        String y = "" + 74.905;
-        String n = "" + y;
-        int decimal = y.indexOf(".");
-        System.out.println(Math.round(c));
+        LinearEquation l = new LinearEquation(2,4,5,7);
+        System.out.println(l.roundToHundred(7.875));
+        System.out.println(l.slope());
+        System.out.println(l.distance());
+        System.out.println(l.yIntercept());
+        System.out.println(l.equation());
+        System.out.println(l.coordinateForX(9));
+
     }
 }

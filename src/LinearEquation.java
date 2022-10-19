@@ -15,7 +15,7 @@ public class LinearEquation {
         double numerator = y2 - y1;
         double denominator = x2 - x1;
         double slope = numerator / denominator ;
-        slope = Math.round(slope);
+        slope = roundToHundred(slope);
         return slope;
     }
 
@@ -27,7 +27,7 @@ public class LinearEquation {
     public double yIntercept(){
         double m = slope();
         double intercept = -1 * (m * x1) + y1;
-        intercept = Math.round(intercept);
+        intercept = roundToHundred(intercept);
         return intercept;
     }
 
@@ -51,28 +51,34 @@ public class LinearEquation {
 
     public String coordinateForX(double xVal){
         double y = slope() * xVal + yIntercept();
-        y = Math.round(y);
+        y = roundToHundred(y);
         String coord = "(" + xVal + ", " + y + ")";
         return coord;
     }
 
     public double roundToHundred(double num){
-        String number = "" + num;
+        double roundedNum = 0;
+        String number = num + "";
         int decimal = number.indexOf(".");
-        int tenth = Integer.parseInt(number.substring(decimal + 1 ,decimal + 2 ));
-        int hundredth = Integer.parseInt(number.substring(decimal + 2 ,decimal + 3 ));
-        int thousandth = Integer.parseInt(number.substring(decimal + 3, decimal + 4));
-        if (thousandth >= 5 ){
-            hundredth = hundredth + 1;
-            if (hundredth >= 10){
-                tenth = tenth + 1;
-                hundredth = 0;
-                if (tenth >= 10){
-
-                }
-            }
+        if (decimal == -1){
+            return num;
         }
-
-        return 5.5;
+        if (decimal + 2 < number.length()) {
+            int wholeNum = Integer.parseInt(number.substring(0, decimal));
+            int tenth = Integer.parseInt(number.substring(decimal + 1, decimal + 2));
+            int hundredth = Integer.parseInt(number.substring(decimal + 2, decimal + 3));
+            int thousandth = Integer.parseInt(number.substring(decimal + 3, decimal + 4));
+            double decimalPlace = (tenth * 10.0) + hundredth + (thousandth / 10.0);
+            decimalPlace = Math.round(decimalPlace);
+            if (decimalPlace == 100) {
+                wholeNum++;
+                roundedNum = wholeNum;
+            } else if (decimalPlace < 100) {
+                roundedNum = wholeNum + (decimalPlace / 100);
+            }
+        }else {
+            return num;
+        }
+        return roundedNum;
     }
 }
