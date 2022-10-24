@@ -3,7 +3,7 @@ public class LinearEquationRunner {
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
 
-        /*System.out.println("Welcome!");
+        System.out.println("Welcome!");
         System.out.print("Enter coordinate 1: ");
         String one = scan.nextLine();
 
@@ -27,18 +27,38 @@ public class LinearEquationRunner {
         int y1 = Integer.parseInt(firstY);
         int y2 = Integer.parseInt(secondY);
 
-        System.out.println(x1);
-        System.out.println(x2);
-        System.out.println(y1);
-        System.out.println(y2); */
+        if (x1==x2){
+            System.out.println();
+        }else {
+            LinearEquation eq = new LinearEquation(x1, x2, y1, y2);
+            System.out.println(eq.lineInfo());
 
-        LinearEquation l = new LinearEquation(2,4,5,7);
-        System.out.println(l.roundToHundred(7.875));
-        System.out.println(l.slope());
-        System.out.println(l.distance());
-        System.out.println(l.yIntercept());
-        System.out.println(l.equation());
-        System.out.println(l.coordinateForX(9));
+            System.out.print("Enter a value for x: ");
+            String x = scan.nextLine();
+            int xCoord = Integer.parseInt(x);
+
+            System.out.println(eq.coordinateForX(xCoord));
+        }
+
+
+
+        // Testing
+        int x1 = -1;
+        int y1 = 5;
+        int x2 = 3;
+        int y2 = 10;
+        LinearEquation equation = new LinearEquation(x1, y1, x2, y2);
+        System.out.println("Equation: " + equation.equation());
+        System.out.println("Slope: " + equation.slope());
+        System.out.println("y-intercept: " + equation.yIntercept());
+        System.out.println("Distance: " + equation.distance());
+        System.out.println();
+        System.out.println("----- Line info -----");
+        System.out.println(equation.lineInfo());
+        System.out.println();
+        double testX = 4;
+        System.out.println("Coordinate for x: " + equation.coordinateForX(testX));
+
 
     }
 }
